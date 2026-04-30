@@ -36,7 +36,6 @@
     overflow-x: hidden;
   }
 
-  /* ── noise overlay ── */
   body::before {
     content: '';
     position: fixed;
@@ -47,7 +46,6 @@
     opacity: 0.6;
   }
 
-  /* ── grid lines ── */
   body::after {
     content: '';
     position: fixed;
@@ -69,7 +67,6 @@
     z-index: 1;
   }
 
-  /* ── NAV ── */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -119,7 +116,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* ── HERO ── */
   .hero {
     padding: 160px 0 100px;
     text-align: center;
@@ -128,11 +124,9 @@
 
   .hero-glow {
     position: absolute;
-    top: 80px;
-    left: 50%;
+    top: 80px; left: 50%;
     transform: translateX(-50%);
-    width: 600px;
-    height: 400px;
+    width: 600px; height: 400px;
     background: radial-gradient(ellipse, rgba(124,111,250,0.15) 0%, transparent 70%);
     pointer-events: none;
   }
@@ -246,7 +240,6 @@
     border-color: rgba(255,255,255,0.25);
   }
 
-  /* ── SHORTCUT DISPLAY ── */
   .shortcut-bar {
     display: inline-flex;
     align-items: center;
@@ -272,10 +265,7 @@
     font-weight: 500;
   }
 
-  /* ── FEATURES ── */
-  .section {
-    padding: 100px 0;
-  }
+  .section { padding: 100px 0; }
 
   .section-label {
     font-size: 12px;
@@ -319,13 +309,10 @@
     transition: background 0.2s ease;
   }
 
-  .feature-card:hover {
-    background: var(--bg3);
-  }
+  .feature-card:hover { background: var(--bg3); }
 
   .feature-icon {
-    width: 44px;
-    height: 44px;
+    width: 44px; height: 44px;
     border-radius: 12px;
     background: var(--accent-glow);
     border: 1px solid rgba(124,111,250,0.2);
@@ -351,19 +338,14 @@
     font-weight: 300;
   }
 
-  /* ── HOW IT WORKS ── */
   .steps {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 32px;
     margin-top: 56px;
-    counter-reset: steps;
   }
 
-  .step {
-    counter-increment: steps;
-    position: relative;
-  }
+  .step { position: relative; }
 
   .step-num {
     font-family: 'Syne', sans-serif;
@@ -390,16 +372,13 @@
 
   .step-line {
     position: absolute;
-    top: 24px;
-    right: -16px;
-    width: 32px;
-    height: 1px;
+    top: 24px; right: -16px;
+    width: 32px; height: 1px;
     background: var(--border2);
   }
 
   .step:last-child .step-line { display: none; }
 
-  /* ── PRICING ── */
   .pricing-card {
     max-width: 420px;
     margin: 56px auto 0;
@@ -463,12 +442,7 @@
   }
 
   .pricing-features li:last-child { border-bottom: none; }
-
-  .check {
-    color: var(--green);
-    font-size: 14px;
-    flex-shrink: 0;
-  }
+  .check { color: var(--green); font-size: 14px; flex-shrink: 0; }
 
   .trial-note {
     font-size: 13px;
@@ -476,7 +450,6 @@
     margin-top: 16px;
   }
 
-  /* ── COMING SOON ── */
   .coming-soon {
     text-align: center;
     padding: 100px 0;
@@ -515,30 +488,6 @@
     font-weight: 300;
   }
 
-  .email-form {
-    display: flex;
-    gap: 8px;
-    max-width: 380px;
-    margin: 0 auto;
-  }
-
-  .email-input {
-    flex: 1;
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: 100px;
-    padding: 12px 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .email-input::placeholder { color: var(--muted); }
-  .email-input:focus { border-color: rgba(124,111,250,0.5); }
-
-  /* ── FOOTER ── */
   footer {
     border-top: 1px solid var(--border);
     padding: 36px 0;
@@ -548,7 +497,6 @@
     font-weight: 300;
   }
 
-  /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -560,12 +508,8 @@
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
 
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── DIVIDER ── */
   .divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--border2), transparent);
@@ -585,7 +529,6 @@
 </nav>
 
 <main>
-  <!-- HERO -->
   <section class="hero">
     <div class="container">
       <div class="hero-glow"></div>
@@ -596,10 +539,10 @@
       <h1>Study smarter.<br><span class="h1-accent">Not harder.</span></h1>
       <p class="hero-sub">Synapse activates on any webpage and uses AI to identify and answer every question on your quizzes, tests, and worksheets — instantly.</p>
       <div class="hero-actions">
-        <button class="btn-primary">
+        <a href="https://tally.so/r/A7WK4B" target="_blank" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Coming Soon
-        </button>
+          Get Early Access
+        </a>
         <a href="#how-it-works" class="btn-ghost">See how it works</a>
       </div>
       <div class="shortcut-bar">
@@ -610,13 +553,11 @@
 
   <div class="divider"></div>
 
-  <!-- FEATURES -->
   <section class="section fade-in">
     <div class="container">
       <div class="section-label">Features</div>
       <h2 class="section-title">Everything you need<br>to ace your coursework</h2>
       <p class="section-sub">Synapse works on any website, in real time, with no setup required.</p>
-
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon">📸</div>
@@ -654,7 +595,6 @@
 
   <div class="divider"></div>
 
-  <!-- HOW IT WORKS -->
   <section class="section fade-in" id="how-it-works">
     <div class="container">
       <div class="section-label">How it works</div>
@@ -689,12 +629,10 @@
 
   <div class="divider"></div>
 
-  <!-- PRICING -->
   <section class="section fade-in" id="pricing">
     <div class="container" style="text-align:center;">
       <div class="section-label">Pricing</div>
       <h2 class="section-title">Simple, honest pricing</h2>
-
       <div class="pricing-card">
         <div class="pricing-label">Synapse Pro</div>
         <div class="pricing-price">$9<span style="font-size:28px;letter-spacing:0;">.99</span></div>
@@ -707,9 +645,9 @@
           <li><span class="check">✓</span> All subjects supported</li>
           <li><span class="check">✓</span> Priority support</li>
         </ul>
-        <button class="btn-primary" style="width:100%;justify-content:center;">
-          Coming Soon to Chrome Web Store
-        </button>
+        <a href="https://tally.so/r/A7WK4B" target="_blank" class="btn-primary" style="width:100%;justify-content:center;display:flex;">
+          Get Early Access
+        </a>
         <p class="trial-note">3-day free trial included. No credit card required to start.</p>
       </div>
     </div>
@@ -717,16 +655,14 @@
 
   <div class="divider"></div>
 
-  <!-- COMING SOON / WAITLIST -->
   <section class="coming-soon fade-in">
     <div class="container">
       <div class="cs-box">
         <h2 class="cs-title">Launching soon</h2>
         <p class="cs-sub">Be the first to know when Synapse hits the Chrome Web Store.</p>
-        <div class="email-form">
-          <input type="email" class="email-input" placeholder="your@email.com">
-          <button class="btn-primary" style="flex-shrink:0; padding: 12px 22px;">Notify me</button>
-        </div>
+        <a href="https://tally.so/r/A7WK4B" target="_blank" class="btn-primary" style="font-size:16px; padding: 15px 36px;">
+          Join the waitlist
+        </a>
       </div>
     </div>
   </section>
@@ -743,14 +679,6 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  document.querySelector('.email-form button').addEventListener('click', () => {
-    const input = document.querySelector('.email-input');
-    if (input.value && input.value.includes('@')) {
-      input.value = '';
-      input.placeholder = "You're on the list!";
-    }
-  });
 </script>
 </body>
 </html>
