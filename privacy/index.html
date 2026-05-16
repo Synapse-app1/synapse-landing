@@ -1,0 +1,86 @@
+
+Synapse
+← Back to home
+LEGAL
+Privacy Policy
+Effective: May 2026 Last updated: May 12, 2026 Questions?
+support.synapse.app@gmail.com
+CONTENTS
+	1	Overview
+	2	Data we collect
+	3	How screenshots are handled
+	4	AI processing & third-party services
+	5	Payments
+	6	Data storage & retention
+	7	Your rights
+	8	Children's privacy
+	9	Changes to this policy
+	10	Contact
+1 Overview
+Synapse ("we", "our", "the extension") is an AI-powered study assistant for Chrome. We take your privacy seriously. This policy explains exactly what data we collect, how it is used, and what we never do with it.
+Short version: We collect only what is necessary to provide the service. We do not sell your data. Screenshots are processed in real time and never stored. Your browsing history is never collected.
+2 Data we collect
+The following table describes every category of data Synapse touches and what it is used for.
+DATA
+PURPOSE
+STORED WHERE
+Email address
+Identifying your subscription and verifying access tier (free trial / Pro)
+Supabase (our backend database) and Chrome's local sync storage
+Subscription tier
+Determining feature access (free trial vs. Pro)
+Chrome local sync storage only — synced across your Chrome profile
+Subject preference
+Personalising AI responses to your current subject area
+Chrome local sync storage only — never sent to our servers
+Screenshots
+Identifying visible questions on the active page for AI analysis
+Transmitted to our server in real time — never stored or logged
+Selected text (Google Docs only)
+Answering a specific question highlighted by the user
+Sent to our server for AI processing — never stored
+We do not collect: browsing history, page content outside of an explicit user-triggered activation, cookies, device identifiers, IP addresses (beyond standard server logs), or any data from pages where Synapse has not been activated by the user.
+Chrome Web Store Limited Use: Synapse's use and transfer of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.
+3 How screenshots are handled
+When you activate Synapse on a webpage, the extension captures a screenshot of the currently visible area. This screenshot is:
+• Captured locally in your browser using Chrome's standard tab capture API • Transmitted over an encrypted HTTPS connection to our Vercel-hosted backend server • Passed immediately to our AI provider (Groq) for analysis • Discarded after the response is returned — it is never written to a database, file system, or log
+Screenshots are never stored. They exist only in memory during the brief processing window. No image of your screen is retained by Synapse or its AI providers beyond the duration of a single request.
+Our server does not retain request bodies. Groq's data handling is governed by their own privacy policy, which states that API inputs are not used to train models.
+4 AI processing & third-party services
+Synapse uses the following third-party services to deliver its functionality:
+SERVICE
+PURPOSE
+DATA SENT
+Groq (primary)
+AI inference — answering questions using Llama 4
+Screenshot images and/or selected text, subject context. No personal identifiers.
+OpenAI (fallback)
+AI inference fallback using GPT-4o if Groq is unavailable
+Same as above. No personal identifiers.
+Vercel
+Hosting our serverless backend API
+Standard server logs (IP address, timestamp). Retained per Vercel's policy.
+Supabase
+User account & subscription database
+Email address and subscription status only.
+We do not share your personal data with any advertising networks, data brokers, or analytics platforms. If we change or add AI sub-processors, we will update this policy accordingly. Current sub-processors are listed above.
+5 Payments
+Subscription payments are processed by Stripe. Synapse never sees, handles, or stores your credit card information. When you click "Upgrade," you are redirected to a Stripe-hosted checkout page. All payment data is governed by Stripe's Privacy Policy.
+We receive confirmation of subscription status from Stripe (active, cancelled, trial) and store only that status — not any payment method details.
+6 Data storage & retention
+Your email address and subscription status are retained in our Supabase database for as long as your account is active. Session answer history exists only in your browser's memory for the duration of a single browsing session — it is never sent to our servers and is cleared when you close the tab.
+If you cancel your subscription and request account deletion, we will remove your email and all associated records from our database within 30 days.
+7 Your rights (GDPR & CCPA)
+You have the right to: access the personal data we hold about you, request correction of inaccurate data, request deletion of your account and all associated data, and withdraw consent at any time by uninstalling the extension.
+GDPR (EU users): If you are located in the European Union, you additionally have the right to data portability (receiving your data in a machine-readable format) and the right to lodge a complaint with your local supervisory authority if you believe your data has been handled unlawfully.
+CCPA (California users): If you are a California resident, you have the right to know what personal data we collect, the right to delete it, and the right to opt out of its sale (we do not sell personal data).
+To exercise any of these rights, email us at support@getsynapse.app. We will respond within 14 days.
+8 Children's privacy
+Synapse is intended for users aged 13 and older (16 and older in the European Union). Users under these ages are not permitted to create an account or use the service. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will delete it promptly.
+9 Changes to this policy
+We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the extension after changes are posted constitutes acceptance of the updated policy. For significant changes, we will notify users via the extension popup.
+10 Contact
+If you have any questions about this Privacy Policy or how your data is handled, please contact us:
+Email: support@getsynapse.app Website: synapse-app1-synapse-landing.vercel.app Developer: Synapse (independent developer) For formal GDPR inquiries, the data controller contact is: support@getsynapse.app
+© 2026 Synapse. All rights reserved.
+Home · Privacy Policy
