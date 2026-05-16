@@ -1,86 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Privacy Policy — Synapse</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-Synapse
-← Back to home
-LEGAL
-Privacy Policy
-Effective: May 2026 Last updated: May 12, 2026 Questions?
-support.synapse.app@gmail.com
-CONTENTS
-	1	Overview
-	2	Data we collect
-	3	How screenshots are handled
-	4	AI processing & third-party services
-	5	Payments
-	6	Data storage & retention
-	7	Your rights
-	8	Children's privacy
-	9	Changes to this policy
-	10	Contact
-1 Overview
-Synapse ("we", "our", "the extension") is an AI-powered study assistant for Chrome. We take your privacy seriously. This policy explains exactly what data we collect, how it is used, and what we never do with it.
-Short version: We collect only what is necessary to provide the service. We do not sell your data. Screenshots are processed in real time and never stored. Your browsing history is never collected.
-2 Data we collect
-The following table describes every category of data Synapse touches and what it is used for.
-DATA
-PURPOSE
-STORED WHERE
-Email address
-Identifying your subscription and verifying access tier (free trial / Pro)
-Supabase (our backend database) and Chrome's local sync storage
-Subscription tier
-Determining feature access (free trial vs. Pro)
-Chrome local sync storage only — synced across your Chrome profile
-Subject preference
-Personalising AI responses to your current subject area
-Chrome local sync storage only — never sent to our servers
-Screenshots
-Identifying visible questions on the active page for AI analysis
-Transmitted to our server in real time — never stored or logged
-Selected text (Google Docs only)
-Answering a specific question highlighted by the user
-Sent to our server for AI processing — never stored
-We do not collect: browsing history, page content outside of an explicit user-triggered activation, cookies, device identifiers, IP addresses (beyond standard server logs), or any data from pages where Synapse has not been activated by the user.
-Chrome Web Store Limited Use: Synapse's use and transfer of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.
-3 How screenshots are handled
-When you activate Synapse on a webpage, the extension captures a screenshot of the currently visible area. This screenshot is:
-• Captured locally in your browser using Chrome's standard tab capture API • Transmitted over an encrypted HTTPS connection to our Vercel-hosted backend server • Passed immediately to our AI provider (Groq) for analysis • Discarded after the response is returned — it is never written to a database, file system, or log
-Screenshots are never stored. They exist only in memory during the brief processing window. No image of your screen is retained by Synapse or its AI providers beyond the duration of a single request.
-Our server does not retain request bodies. Groq's data handling is governed by their own privacy policy, which states that API inputs are not used to train models.
-4 AI processing & third-party services
-Synapse uses the following third-party services to deliver its functionality:
-SERVICE
-PURPOSE
-DATA SENT
-Groq (primary)
-AI inference — answering questions using Llama 4
-Screenshot images and/or selected text, subject context. No personal identifiers.
-OpenAI (fallback)
-AI inference fallback using GPT-4o if Groq is unavailable
-Same as above. No personal identifiers.
-Vercel
-Hosting our serverless backend API
-Standard server logs (IP address, timestamp). Retained per Vercel's policy.
-Supabase
-User account & subscription database
-Email address and subscription status only.
-We do not share your personal data with any advertising networks, data brokers, or analytics platforms. If we change or add AI sub-processors, we will update this policy accordingly. Current sub-processors are listed above.
-5 Payments
-Subscription payments are processed by Stripe. Synapse never sees, handles, or stores your credit card information. When you click "Upgrade," you are redirected to a Stripe-hosted checkout page. All payment data is governed by Stripe's Privacy Policy.
-We receive confirmation of subscription status from Stripe (active, cancelled, trial) and store only that status — not any payment method details.
-6 Data storage & retention
-Your email address and subscription status are retained in our Supabase database for as long as your account is active. Session answer history exists only in your browser's memory for the duration of a single browsing session — it is never sent to our servers and is cleared when you close the tab.
-If you cancel your subscription and request account deletion, we will remove your email and all associated records from our database within 30 days.
-7 Your rights (GDPR & CCPA)
-You have the right to: access the personal data we hold about you, request correction of inaccurate data, request deletion of your account and all associated data, and withdraw consent at any time by uninstalling the extension.
-GDPR (EU users): If you are located in the European Union, you additionally have the right to data portability (receiving your data in a machine-readable format) and the right to lodge a complaint with your local supervisory authority if you believe your data has been handled unlawfully.
-CCPA (California users): If you are a California resident, you have the right to know what personal data we collect, the right to delete it, and the right to opt out of its sale (we do not sell personal data).
-To exercise any of these rights, email us at support@getsynapse.app. We will respond within 14 days.
-8 Children's privacy
-Synapse is intended for users aged 13 and older (16 and older in the European Union). Users under these ages are not permitted to create an account or use the service. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will delete it promptly.
-9 Changes to this policy
-We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the extension after changes are posted constitutes acceptance of the updated policy. For significant changes, we will notify users via the extension popup.
-10 Contact
-If you have any questions about this Privacy Policy or how your data is handled, please contact us:
-Email: support@getsynapse.app Website: synapse-app1-synapse-landing.vercel.app Developer: Synapse (independent developer) For formal GDPR inquiries, the data controller contact is: support@getsynapse.app
-© 2026 Synapse. All rights reserved.
-Home · Privacy Policy
+  :root {
+    --bg:        #0f0d1a;
+    --surface:   #1a1730;
+    --border:    #2e2856;
+    --accent:    #5838ba;
+    --accent2:   #7f5af0;
+    --text:      #e0deff;
+    --muted:     #9f96f5;
+    --subtle:    #6b6399;
+    --success:   #5DCAA5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Google Sans", system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(88,56,186,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(88,56,186,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 24px 80px; }
+
+  nav {
+    display: flex; align-items: center; gap: 10px;
+    padding: 24px 0 48px;
+    border-bottom: 0.5px solid var(--border);
+    margin-bottom: 56px;
+  }
+  .logo-mark {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: var(--accent);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .logo-name { font-size: 15px; font-weight: 500; color: var(--text); flex: 1; }
+  .back-link {
+    font-size: 12px; color: var(--subtle); text-decoration: none;
+    padding: 4px 10px; border: 0.5px solid var(--border); border-radius: 99px;
+  }
+
+  .hero { margin-bottom: 56px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 500; color: var(--text); line-height: 1.2; margin-bottom: 16px; }
+  .hero-meta { font-size: 13px; color: var(--subtle); display: flex; gap: 20px; flex-wrap: wrap; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--success); display: inline-block; }
+
+  .toc { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 48px; }
+  .toc-title { font-size: 11px; font-weight: 500; color: var(--subtle); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+  .toc ol { padding-left: 18px; }
+  .toc li { margin-bottom: 6px; }
+  .toc a { color: var(--muted); text-decoration: none; font-size: 13px; }
+
+  .policy-section { margin-bottom: 48px; scroll-margin-top: 24px; }
+  h2 { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .section-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(88,56,186,0.2); border: 0.5px solid rgba(88,56,186,0.4); font-size: 11px; color: var(--muted); font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  p { color: #c4bfef; margin-bottom: 14px; }
+  p:last-child { margin-bottom: 0; }
+
+  .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; background: var(--surface); border-radius: 10px; overflow: hidden; border: 0.5px solid var(--border); }
+  .data-table th { text-align: left; padding: 10px 14px; font-size: 11px; font-weight: 500; color: var(--subtle); text-transform: uppercase; letter-spacing: 0.06em; background: rgba(88,56,186,0.08); border-bottom: 0.5px solid var(--border); }
+  .data-table td { padding: 11px 14px; color: #c4bfef; border-bottom: 0.5px solid var(--border); vertical-align: top; line-height: 1.5; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td:first-child { color: var(--muted); font-weight: 500; white-space: nowrap; }
+
+  .callout { background: rgba(93,202,165,0.08); border: 0.5px solid rgba(93,202,165,0.25); border-left: 3px solid var(--success); border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 20px 0; font-size: 13px; color: #9fe1cb; line-height: 1.6; }
+  .callout strong { color: var(--success); }
+
+  footer { margin-top: 64px; padding-top: 24px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--subtle); }
+  footer a { color: var(--muted); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <div class="logo-mark">
+      <svg width="16" height="16" viewBox="0 0 100 100" fill="none">
+        <path d="M50 62 C38 62 28 72 26 60 C24 50 30 44 28 36 C26 28 34 20 42 22 C44 16 50 14 56 18 C62 14 70 18 70 26 C76 28 78 36 74 42 C76 50 72 60 68 62 C64 66 50 62 50 62Z" stroke="#AFA9EC" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M50 62 C50 68 48 74 50 78" stroke="#AFA9EC" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <circle cx="50" cy="26" r="9" stroke="#e0deff" stroke-width="5" fill="none"/>
+      </svg>
+    </div>
+    <span class="logo-name">Synapse</span>
+    <a class="back-link" href="/">← Back to home</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Legal</div>
+    <h1>Privacy Policy</h1>
+    <div class="hero-meta">
+      <span><span class="dot"></span> Effective: May 2026</span>
+      <span>Last updated: May 16, 2026</span>
+      <span>Questions? <a href="mailto:support@getsynapse.app" style="color:var(--muted)">support@getsynapse.app</a></span>
+    </div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#data">Data we collect</a></li>
+      <li><a href="#screenshots">How screenshots are handled</a></li>
+      <li><a href="#ai">AI processing & third-party services</a></li>
+      <li><a href="#payments">Payments</a></li>
+      <li><a href="#storage">Data storage & retention</a></li>
+      <li><a href="#rights">Your rights</a></li>
+      <li><a href="#children">Children's privacy</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="policy-section" id="overview">
+    <h2><span class="section-num">1</span> Overview</h2>
+    <p>Synapse ("we", "our", "the extension") is an AI-powered study assistant for Chrome. We take your privacy seriously. This policy explains exactly what data we collect, how it is used, and what we never do with it.</p>
+    <div class="callout">
+      <strong>Short version:</strong> We collect only what is necessary to provide the service. We do not sell your data. Screenshots are processed in real time and never stored. Your browsing history is never collected.
+    </div>
+  </div>
+
+  <div class="policy-section" id="data">
+    <h2><span class="section-num">2</span> Data we collect</h2>
+    <p>The following table describes every category of data Synapse touches and what it is used for.</p>
+    <table class="data-table">
+      <tr><th>Data</th><th>Purpose</th><th>Stored where</th></tr>
+      <tr><td>Email address</td><td>Identifying your subscription and verifying access tier (free trial / Pro)</td><td>Supabase (our backend database) and Chrome's local sync storage</td></tr>
+      <tr><td>Subscription tier</td><td>Determining feature access (free trial vs. Pro)</td><td>Chrome local sync storage only — synced across your Chrome profile</td></tr>
+      <tr><td>Subject preference</td><td>Personalising AI responses to your current subject area</td><td>Chrome local sync storage only — never sent to our servers</td></tr>
+      <tr><td>Screenshots</td><td>Identifying visible questions on the active page for AI analysis</td><td>Transmitted to our server in real time — <strong>never stored or logged</strong></td></tr>
+      <tr><td>Selected text (Google Docs only)</td><td>Answering a specific question highlighted by the user</td><td>Sent to our server for AI processing — never stored</td></tr>
+    </table>
+    <p>We do <strong>not</strong> collect: browsing history, page content outside of an explicit user-triggered activation, cookies, device identifiers, IP addresses (beyond standard server logs), or any data from pages where Synapse has not been activated by the user.</p>
+    <div class="callout">
+      <strong>Chrome Web Store Limited Use:</strong> Synapse's use and transfer of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.
+    </div>
+  </div>
+
+  <div class="policy-section" id="screenshots">
+    <h2><span class="section-num">3</span> How screenshots are handled</h2>
+    <p>When you activate Synapse on a webpage, the extension captures a screenshot of the currently visible area. This screenshot is:</p>
+    <p>• Captured locally in your browser using Chrome's standard tab capture API<br>
+       • Transmitted over an encrypted HTTPS connection to our Vercel-hosted backend server<br>
+       • Passed immediately to our AI provider (Groq) for analysis<br>
+       • Discarded after the response is returned — never written to a database, file system, or log</p>
+    <div class="callout">
+      <strong>Screenshots are never stored.</strong> They exist only in memory during the brief processing window. No image of your screen is retained by Synapse or its AI providers beyond the duration of a single request.
+    </div>
+    <p>Our server does not retain request bodies. Groq's data handling is governed by their own privacy policy, which states that API inputs are not used to train models.</p>
+  </div>
+
+  <div class="policy-section" id="ai">
+    <h2><span class="section-num">4</span> AI processing & third-party services</h2>
+    <p>Synapse uses the following third-party services to deliver its functionality:</p>
+    <table class="data-table">
+      <tr><th>Service</th><th>Purpose</th><th>Data sent</th></tr>
+      <tr><td>Groq (primary)</td><td>AI inference using Llama 4</td><td>Screenshot images and/or selected text, subject context. No personal identifiers.</td></tr>
+      <tr><td>OpenAI (fallback)</td><td>AI inference fallback using GPT-4o if Groq is unavailable</td><td>Same as above. No personal identifiers.</td></tr>
+      <tr><td>Vercel</td><td>Hosting our serverless backend API</td><td>Standard server logs (IP address, timestamp). Retained per Vercel's policy.</td></tr>
+      <tr><td>Supabase</td><td>User account & subscription database</td><td>Email address and subscription status only.</td></tr>
+    </table>
+    <p>We do not share your personal data with any advertising networks, data brokers, or analytics platforms. If we change or add AI sub-processors, we will update this policy accordingly.</p>
+  </div>
+
+  <div class="policy-section" id="payments">
+    <h2><span class="section-num">5</span> Payments</h2>
+    <p>Subscription payments are processed by <strong>Stripe</strong>. Synapse never sees, handles, or stores your credit card information. When you click "Upgrade," you are redirected to a Stripe-hosted checkout page. All payment data is governed by <a href="https://stripe.com/privacy" style="color:var(--muted)" target="_blank">Stripe's Privacy Policy</a>.</p>
+    <p>We receive confirmation of subscription status from Stripe (active, cancelled, trial) and store only that status — not any payment method details.</p>
+  </div>
+
+  <div class="policy-section" id="storage">
+    <h2><span class="section-num">6</span> Data storage & retention</h2>
+    <p>Your email address and subscription status are retained in our Supabase database for as long as your account is active. Session answer history exists only in your browser's memory for the duration of a single browsing session — it is never sent to our servers and is cleared when you close the tab.</p>
+    <p>If you cancel your subscription and request account deletion, we will remove your email and all associated records from our database within 30 days.</p>
+  </div>
+
+  <div class="policy-section" id="rights">
+    <h2><span class="section-num">7</span> Your rights (GDPR & CCPA)</h2>
+    <p>You have the right to: access the personal data we hold about you, request correction of inaccurate data, request deletion of your account and all associated data, and withdraw consent at any time by uninstalling the extension.</p>
+    <p><strong>GDPR (EU users):</strong> If you are located in the European Union, you additionally have the right to data portability (receiving your data in a machine-readable format) and the right to lodge a complaint with your local supervisory authority if you believe your data has been handled unlawfully.</p>
+    <p><strong>CCPA (California users):</strong> If you are a California resident, you have the right to know what personal data we collect, the right to delete it, and the right to opt out of its sale (we do not sell personal data).</p>
+    <p>To exercise any of these rights, email us at <a href="mailto:support@getsynapse.app" style="color:var(--muted)">support@getsynapse.app</a>. We will respond within 14 days.</p>
+  </div>
+
+  <div class="policy-section" id="children">
+    <h2><span class="section-num">8</span> Children's privacy</h2>
+    <p>Synapse is intended for users aged 13 and older (16 and older in the European Union). Users under these ages are not permitted to create an account or use the service. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will delete it promptly.</p>
+  </div>
+
+  <div class="policy-section" id="changes">
+    <h2><span class="section-num">9</span> Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the extension after changes are posted constitutes acceptance of the updated policy. For significant changes, we will notify users via the extension popup.</p>
+  </div>
+
+  <div class="policy-section" id="contact">
+    <h2><span class="section-num">10</span> Contact</h2>
+    <p>If you have any questions about this Privacy Policy or how your data is handled, please contact us:</p>
+    <p>
+      Email: <a href="mailto:support@getsynapse.app" style="color:var(--muted)">support@getsynapse.app</a><br>
+      Website: <a href="https://synapse-app1-synapse-landing.vercel.app" style="color:var(--muted)" target="_blank">synapse-app1-synapse-landing.vercel.app</a><br>
+      Developer: Synapse (independent developer)<br>
+      For formal GDPR inquiries, the data controller contact is: <a href="mailto:support@getsynapse.app" style="color:var(--muted)">support@getsynapse.app</a>
+    </p>
+  </div>
+
+  <footer>
+    <span>© 2026 Synapse. All rights reserved.</span>
+    <span><a href="/">Home</a> · <a href="/privacy">Privacy Policy</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
